@@ -1,5 +1,5 @@
 {
-    "name": "scaleplan/youtube-uploader",
+    "name": "scaleplan/youtube",
     "type": "library",
     "description": "Simple Youtube uploader",
     "keywords": [
@@ -14,7 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Scaleplan\\YoutubeUploader\\": "src"
+            "Scaleplan\\Youtube\\": "src"
         }
     }
 }
