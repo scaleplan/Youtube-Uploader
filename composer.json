@@ -1,61 +1,20 @@
 {
-    "name": "bahaaalhagar/youtube-uploader",
+    "name": "scaleplan/youtube-uploader",
     "type": "library",
-    "description": ":simple Youtube uploader",
+    "description": "Simple Youtube uploader",
     "keywords": [
-        "BahaaAlhagar",
         "Youtube Uploader",
         "PHP",
-        "laravel",
         "google api",
         "youtube"
     ],
-    "homepage": "https://github.com/BahaaAlhagar/YoutubeUploader",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "BahaaAlhagar",
-            "email": "damrawyy@yahoo.com",
-            "homepage": "https://github.com/BahaaAlhagar",
-            "role": "Developer"
-        }
-    ],
     "require": {
-        "illuminate/support": "~5.4",
-        "php" : "~5.6|~7.0",
+        "php" : "~7.0",
         "google/apiclient": "^2.2",
-        "nesbot/carbon": "^1.22"
-    },
-    "require-dev": {
-        "phpunit/phpunit" : ">=5.4.3",
-        "squizlabs/php_codesniffer": "^2.3"
     },
     "autoload": {
         "psr-4": {
-            "BahaaAlhagar\\YoutubeUploader\\": "src"
+            "Scaleplan\\YoutubeUploader\\": "src"
         }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "BahaaAlhagar\\YoutubeUploader\\": "tests"
-        }
-    },
-    "scripts": {
-        "test": "phpunit",
-        "check-style": "phpcs -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests",
-        "fix-style": "phpcbf -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests"
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "BahaaAlhagar\\YoutubeUploader\\YoutubeUploaderServiceProvider"
-            ],
-            "aliases": {
-                "YoutubeUploader": "BahaaAlhagar\\YoutubeUploader\\Facades\\YoutubeUploader"
-            }
-        }
-    },
-    "config": {
-        "sort-packages": true
     }
 }
