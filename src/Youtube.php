@@ -3,6 +3,7 @@
 namespace Scaleplan\Youtube;
 
 use Psr\Http\Message\RequestInterface;
+use Scaleplan\Youtube\Constants\LatencyPreferences;
 use Scaleplan\Youtube\Constants\PrivacyStatuses;
 use Scaleplan\Youtube\Exceptions\YoutubeException;
 
@@ -322,5 +323,48 @@ class Youtube
         }
 
         return true;
+    }
+
+    /**
+     * @param string $title
+     * @param \DateTimeInterface $startTime
+     * @param \DateTimeInterface $endTime
+     * @param bool $enableDvr
+     * @param bool $recording
+     * @param string $privacyStatus
+     *
+     * @return \Google_Service_YouTube_LiveBroadcast
+     */
+    public function startLiveStreaming(
+        string $title,
+        \DateTimeInterface $startTime,
+        \DateTimeInterface $endTime,
+        bool $enableDvr = true,
+        bool $recording = false,
+        string $privacyStatus = PrivacyStatuses::PUBLIC
+    ) : \Google_Service_YouTube_LiveBroadcast
+    {
+        $postBody = new \Google_Service_YouTube_LiveBroadcast();
+
+        $contentDetails = new \Google_Service_YouTube_LiveBroadcastContentDetails();
+        $contentDetails->setEnableDvr($enableDvr);
+        $contentDetails->setEnableContentEncryption(true);
+        $contentDetails->setEnableLowLatency(true);
+        $contentDetails->setLatencyPreference(LatencyPreferences::NORMAL);
+        $contentDetails->setEnableAutoStart(false);
+        $contentDetails->setRecordFromStart($recording);
+        $postBody->setContentDetails($contentDetails);
+
+        $snippet = new \Google_Service_YouTube_LiveBroadcastSnippet();
+        $snippet->setTitle($title);
+        $snippet->setScheduledStartTime($startTime->format('c'));
+        $snippet->setScheduledEndTime($endTime->format('c'));
+        $postBody->setSnippet($snippet);
+
+        $status = new \Google_Service_YouTube_LiveBroadcastStatus();
+        $status->setPrivacyStatus($privacyStatus);
+        $postBody->setStatus($status);
+
+        return $this->youtube->liveBroadcasts->insert('snippet,status', $postBody);
     }
 }
