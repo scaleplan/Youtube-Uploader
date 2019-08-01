@@ -335,7 +335,7 @@ class Youtube
      *
      * @return \Google_Service_YouTube_LiveBroadcast
      */
-    public function startLiveStreaming(
+    public function createBroadcast(
         string $title,
         \DateTimeInterface $startTime,
         \DateTimeInterface $endTime,
@@ -366,5 +366,9 @@ class Youtube
         $postBody->setStatus($status);
 
         return $this->youtube->liveBroadcasts->insert('snippet,status', $postBody);
+    }
+
+    public function createLiveStream() {
+
     }
 }
