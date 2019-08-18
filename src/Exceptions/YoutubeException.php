@@ -9,7 +9,7 @@ namespace Scaleplan\Youtube\Exceptions;
  */
 class YoutubeException extends \Exception
 {
-    public const MESSAGE = 'Youtube uploader error.';
+    public const MESSAGE = 'Youtube error.';
     public const CODE = 500;
 
     /**
